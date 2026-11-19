@@ -5,9 +5,13 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Aayush & Saakshi</title>
 <meta name="description" content="Aayush weds Saakshi · 26–30 November 2026 · From Assam to Banaras">
+<meta name="theme-color" content="#2a0508">
+<style>html,body{background:#2a0508}</style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Great+Vibes&family=Marcellus&family=Tiro+Devanagari+Hindi&family=Noto+Serif+Bengali:wght@500&family=Noto+Serif+Tamil:wght@500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link id="gf" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Great+Vibes&family=Marcellus&family=Tiro+Devanagari+Hindi&family=Noto+Serif+Bengali:wght@500&family=Noto+Serif+Tamil:wght@500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Great+Vibes&family=Marcellus&family=Tiro+Devanagari+Hindi&family=Noto+Serif+Bengali:wght@500&family=Noto+Serif+Tamil:wght@500&display=swap" rel="stylesheet"></noscript>
 <style>
 :root{
   --maroon:#6b0f17; --maroon-dk:#2a0508; --gold:#d6a64f; --gold-lt:#f5d98f; --cream:#fbf3e2;
@@ -28,9 +32,27 @@ section{position:relative;overflow:hidden}
 .wrap{max-width:1180px;margin:0 auto;padding:0 16px}
 
 /* ---------- preloader ---------- */
-#pre{position:fixed;inset:0;z-index:200;background:var(--maroon-dk);display:grid;place-items:center;text-align:center}
-#pre .diya{width:90px;margin:0 auto 14px}
-#pre p{font-family:var(--deva);color:var(--gold-lt);font-size:1.3rem}
+#pre{position:fixed;inset:0;z-index:200;display:grid;place-items:center;text-align:center;padding:0 16px;
+  background:radial-gradient(ellipse at 50% 42%,#6b1219 0%,#3a070c 50%,#1a0305 100%)}
+#pre::before{content:"";position:absolute;inset:0;opacity:.12;pointer-events:none;
+  background-image:radial-gradient(#f5d98f 1.2px,transparent 1.5px);background-size:28px 28px}
+.pre-in{position:relative;display:flex;flex-direction:column;align-items:center;gap:6px}
+.pre-ring{position:relative;width:170px;height:170px;margin-bottom:10px}
+.pre-ring svg{position:absolute;inset:0;width:100%;height:100%}
+.pre-ring .r1{animation:spin 14s linear infinite}
+.pre-ring .r2{animation:spin 22s linear infinite reverse}
+.pre-ring .diya{inset:auto;left:50%;top:50%;width:84px;height:76px;margin:-44px 0 0 -42px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.pre-mantra{font-family:var(--deva);color:var(--gold-lt);font-size:1.35rem}
+.pre-names{font-family:var(--script);color:#ffd9a0;font-size:2rem;line-height:1.1}
+.garland{position:relative;width:min(260px,70vw);height:16px;margin-top:14px;border-radius:8px;overflow:hidden;
+  background:radial-gradient(circle at 8px 8px,rgba(242,140,15,.22) 0 6px,transparent 6.5px) 0 0/16px 16px repeat-x}
+.garland-fill{position:absolute;left:0;top:0;bottom:0;width:0;
+  background:radial-gradient(circle at 8px 8px,#fff3c4 0 2px,#ffc23a 2.5px 4px,#f28c0f 4.5px 6.5px,transparent 7px) 0 0/16px 16px repeat-x;
+  filter:drop-shadow(0 0 4px rgba(255,170,40,.6))}
+.pre-pct{font-family:var(--caps);letter-spacing:.2em;color:var(--gold);font-size:.8rem;margin-top:6px;font-variant-numeric:tabular-nums}
+.pre-msg{font-family:var(--serif);font-style:italic;color:#e9c9a0;font-size:1rem;min-height:1.5em}
+@media (prefers-reduced-motion:reduce){.pre-ring .r1,.pre-ring .r2{animation:none}}
 .flame{transform-origin:50% 100%;animation:flick 1.1s ease-in-out infinite alternate}
 @keyframes flick{0%{transform:scale(1,1) rotate(-2deg)}50%{transform:scale(.92,1.08) rotate(2deg)}100%{transform:scale(1.05,.95) rotate(-1deg)}}
 
@@ -233,18 +255,46 @@ footer{background:#1a0305;color:#b89a7a;text-align:center;padding:26px 16px;font
 </head>
 <body>
 
-<div id="pre">
-  <div>
-    <svg class="diya" viewBox="0 0 100 90" aria-hidden="true">
-      <defs><radialGradient id="pfl" cx=".5" cy=".7" r=".6"><stop offset="0" stop-color="#fff6c8"/><stop offset=".5" stop-color="#ffc23a"/><stop offset="1" stop-color="#ff6a00"/></radialGradient></defs>
-      <circle cx="50" cy="36" r="30" fill="#ffb347" opacity=".18"/>
-      <path class="flame" d="M50 50c-9-5-9-17 0-34 9 17 9 29 0 34z" fill="url(#pfl)"/>
-      <path d="M12 54c6 16 22 24 38 24s32-8 38-24z" fill="#c9862e"/><path d="M12 54h76" stroke="#7a4a12" stroke-width="3"/>
-      <path d="M36 84h28" stroke="#c9862e" stroke-width="5" stroke-linecap="round"/>
-    </svg>
-    <p>॥ शुभ आरम्भ ॥</p>
+<div id="pre" role="status" aria-label="Loading the invitation">
+  <div class="pre-in">
+    <div class="pre-ring" aria-hidden="true">
+      <svg class="r1" viewBox="-60 -60 120 120"><circle r="56" fill="none" stroke="#d6a64f" stroke-width="3.6" stroke-linecap="round" stroke-dasharray="0 14.66"/><circle r="50" fill="none" stroke="#d6a64f" stroke-opacity=".35" stroke-width="1"/></svg>
+      <svg class="r2" viewBox="-60 -60 120 120"><g fill="none" stroke="#f28c0f" stroke-width="1.4" stroke-opacity=".8">
+        <path d="M0,-46 Q6,-40 0,-34 Q-6,-40 0,-46Z"/><path transform="rotate(45)" d="M0,-46 Q6,-40 0,-34 Q-6,-40 0,-46Z"/><path transform="rotate(90)" d="M0,-46 Q6,-40 0,-34 Q-6,-40 0,-46Z"/><path transform="rotate(135)" d="M0,-46 Q6,-40 0,-34 Q-6,-40 0,-46Z"/>
+        <path transform="rotate(180)" d="M0,-46 Q6,-40 0,-34 Q-6,-40 0,-46Z"/><path transform="rotate(225)" d="M0,-46 Q6,-40 0,-34 Q-6,-40 0,-46Z"/><path transform="rotate(270)" d="M0,-46 Q6,-40 0,-34 Q-6,-40 0,-46Z"/><path transform="rotate(315)" d="M0,-46 Q6,-40 0,-34 Q-6,-40 0,-46Z"/></g></svg>
+      <svg class="diya" viewBox="0 0 100 90">
+        <defs><radialGradient id="pfl" cx=".5" cy=".7" r=".6"><stop offset="0" stop-color="#fff6c8"/><stop offset=".5" stop-color="#ffc23a"/><stop offset="1" stop-color="#ff6a00"/></radialGradient></defs>
+        <circle cx="50" cy="36" r="30" fill="#ffb347" opacity=".18"/>
+        <path class="flame" d="M50 50c-9-5-9-17 0-34 9 17 9 29 0 34z" fill="url(#pfl)"/>
+        <path d="M12 54c6 16 22 24 38 24s32-8 38-24z" fill="#c9862e"/><path d="M12 54h76" stroke="#7a4a12" stroke-width="3"/>
+        <path d="M36 84h28" stroke="#c9862e" stroke-width="5" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <p class="pre-mantra">॥ शुभ आरम्भ ॥</p>
+    <p class="pre-names">Aayush &amp; Saakshi</p>
+    <div class="garland" aria-hidden="true"><div class="garland-fill" id="preFill"></div></div>
+    <p class="pre-pct"><span id="prePct">0</span>%</p>
+    <p class="pre-msg" id="preMsg">Lighting the diya…</p>
   </div>
 </div>
+<script>
+/* loader progress: runs before anything else downloads */
+(function(){
+  var target=0, shown=0, pct=document.getElementById('prePct'), fill=document.getElementById('preFill'), msg=document.getElementById('preMsg');
+  var steps=[[0,'Lighting the diya…'],[25,'Stringing the marigolds…'],[55,'Laying the banana leaves…'],[85,'Almost ready…'],[100,'Shubh aarambh!']];
+  window.__load=function(p){ if(p>target) target=p; };
+  window.__load(6);
+  var creep=setInterval(function(){ if(target<80) target+=1.2; else clearInterval(creep); },200);
+  var last=performance.now();
+  (function tick(now){
+    now=now||performance.now(); var dt=Math.min(1000,now-last); last=now;
+    if(shown<target) shown=Math.min(target, shown+Math.max(dt*.06,(target-shown)*(1-Math.exp(-dt/110))));
+    pct.textContent=Math.round(shown); fill.style.width=shown+'%';
+    for(var i=steps.length-1;i>=0;i--){ if(shown>=steps[i][0]){ if(msg.textContent!==steps[i][1]) msg.textContent=steps[i][1]; break; } }
+    if(document.getElementById('pre')) requestAnimationFrame(tick);
+  })();
+})();
+</script>
 
 <div class="progress"></div>
 <canvas id="petals"></canvas>
@@ -785,7 +835,17 @@ const heroKolam = kolamDraw($('#hero'));
 // intro: preloader → leaves bloom
 const intro = gsap.timeline({delay:.2,paused:true});
 
-Promise.race([Promise.all(RASTER_JOBS), new Promise(r=>setTimeout(r,2500))]).then(()=>intro.play());
+const setLoad = p => { if(window.__load) window.__load(p); };
+setLoad(55);
+const fontsReady = new Promise(res=>{
+  const l=document.getElementById('gf');
+  if(!l || l.media==='all') res(); else { l.addEventListener('load',res); l.addEventListener('error',res); }
+  setTimeout(res,3500);
+}).then(()=>document.fonts ? document.fonts.ready : null).then(()=>setLoad(75));
+const rastersReady = Promise.all(RASTER_JOBS).then(()=>setLoad(90));
+const minShow = new Promise(r=>setTimeout(r,900));
+Promise.race([Promise.all([fontsReady,rastersReady,minShow]), new Promise(r=>setTimeout(r,6000))])
+  .then(()=>{ setLoad(100); setTimeout(()=>intro.play(),550); });
 intro.to('#pre',{opacity:0,duration:.6,ease:'power2.inOut',onComplete:()=>$('#pre').remove()})
   .to(heroLeaves,{rotation:i=>+heroLeaves[i].dataset.a,duration:1.3,ease:'power3.out',stagger:{each:.015,from:'center'}},'-=.3')
   .call(startScroll)
