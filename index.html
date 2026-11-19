@@ -82,9 +82,9 @@ section{position:relative;overflow:hidden}
 .chip{font-family:var(--caps);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;padding:.45em 1em;border-radius:99px;border:1px solid rgba(245,217,143,.45);color:var(--gold-lt);background:rgba(0,0,0,.18)}
 
 .fan-backdrop{position:absolute;inset:0;z-index:4;background:radial-gradient(circle at 50% 100%,#3d8a36 0%,#1d5a22 40%,#0b2a10 85%)}
-.fan{position:absolute;left:50%;bottom:-5vh;width:0;height:0;z-index:5}
-.hleaf{position:absolute;bottom:0;height:160vh;width:calc(160vh * .34);left:calc(160vh * -.17);transform-origin:50% 100%;will-change:transform}
-.hleaf img,.ev-leaf img,.sadya-leaf img{display:block;width:100%;height:100%;user-select:none;-webkit-user-drag:none}
+.fan{position:absolute;inset:0;z-index:5;pointer-events:none}
+.fan-canvas{display:block;width:100%;height:100%}
+.ev-leaf img,.sadya-leaf img{display:block;width:100%;height:100%;user-select:none;-webkit-user-drag:none}
 .seal{position:absolute;left:50%;top:44%;z-index:7;transform:translate(-50%,-50%);text-align:center;pointer-events:none}
 .seal .disc{width:clamp(140px,26vw,190px);aspect-ratio:1;border-radius:50%;margin:0 auto;display:grid;place-items:center;
   background:radial-gradient(circle at 35% 30%,#fbe3a0,#d6a64f 45%,#8a5a1a 100%);box-shadow:0 10px 40px rgba(0,0,0,.45),inset 0 0 0 6px rgba(255,240,200,.35),inset 0 0 0 9px rgba(120,70,10,.5)}
@@ -191,7 +191,7 @@ section{position:relative;overflow:hidden}
 .ev .where b{display:block;font-family:var(--deva);font-weight:400;font-size:1.3rem;color:var(--ac)}
 .ev .map{display:inline-block;margin-top:12px;font-family:var(--caps);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;padding:.55em 1.2em;border-radius:99px;border:1px solid currentColor;opacity:.9}
 .ev .map:hover{background:var(--ac);color:var(--c2);border-color:var(--ac)}
-.ev-leaf{position:absolute;inset:-9% -16%;z-index:3;pointer-events:none;will-change:transform}
+.ev-leaf{position:absolute;inset:-9% -16%;z-index:3;pointer-events:none}
 .ev-leaf.l{transform-origin:0% 100%}.ev-leaf.r{transform-origin:100% 100%}
 .ev-thread{position:absolute;left:-7%;right:-7%;top:50%;height:4px;margin-top:-2px;z-index:4;border-radius:2px;background:repeating-linear-gradient(90deg,#d8b77a 0 6px,#b89150 6px 9px);box-shadow:0 2px 3px rgba(0,0,0,.4)}
 .ev-thread::after{content:"";position:absolute;left:50%;top:50%;width:18px;height:18px;margin:-9px 0 0 -9px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ffd27a,var(--marigold) 60%,#b65a06);box-shadow:0 0 0 3px #f6b13b inset}
@@ -247,6 +247,12 @@ footer{background:#1a0305;color:#b89a7a;text-align:center;padding:26px 16px;font
   .sadya-leaf{transform:none;width:min(120vw,620px);height:100%}
   .gopuram{width:34vw}
   .ev{min-height:420px}
+}
+/* phones: drop the effects that repaint large areas every frame */
+@media (max-width:760px), (hover:none){
+  .th-leaf{animation:none}
+  .scene,.sadya-leaf,.trail-heart{filter:none}
+  .scene{box-shadow:none}
 }
 @media (prefers-reduced-motion:reduce){
   .th-leaf,.flame,.cal-grid .d.big svg{animation:none}
@@ -515,14 +521,27 @@ function rasterize(svgUrl, dark){
     im.src = svgUrl;
   });
 }
-function leafImg(half, dark){
+const LEAF_BMP = {}, FANS = [];
+function leafKey(half, dark){
   const k = (half||'f') + (dark?'d':'') + Math.floor(rnd()*3);
   if(!LEAF_CACHE[k]){
     const svgUrl = URL.createObjectURL(new Blob([leafSVG(half)],{type:'image/svg+xml'}));
     LEAF_CACHE[k] = svgUrl;
-    RASTER_JOBS.push(rasterize(svgUrl, dark).then(url=>{ LEAF_CACHE[k]=url; $$(`img[data-k="${k}"]`).forEach(i=>i.src=url); }));
+    RASTER_JOBS.push(rasterize(svgUrl, dark).then(url=>{
+      LEAF_CACHE[k]=url;
+      $$(`img[data-k="${k}"]`).forEach(i=>i.src=url);
+      if(LEAF_BMP[k]) LEAF_BMP[k].src=url;
+    }));
   }
+  return k;
+}
+function leafImg(half, dark){
+  const k = leafKey(half, dark);
   return `<img src="${LEAF_CACHE[k]}" data-k="${k}" alt="" draggable="false">`;
+}
+function leafBitmap(k){
+  if(!LEAF_BMP[k]){ const im=new Image(); im.onload=()=>FANS.forEach(f=>f.dirty=true); im.src=LEAF_CACHE[k]; LEAF_BMP[k]=im; }
+  return LEAF_BMP[k];
 }
 
 /* ============ kolam (lotus mandala) ============ */
@@ -737,16 +756,37 @@ $$('.torn').forEach(el=>{
 $$('[data-split]').forEach(el=>{el.innerHTML=[...el.textContent].map(c=>`<span class="ch">${c}</span>`).join('');});
 
 // fans
+/* each fan of banana leaves is ONE canvas, redrawn only while its leaves move (fast on phones) */
+const MOBILE = matchMedia('(max-width:760px), (hover:none)').matches;
 function buildFan(el){
-  const out=[];
-  const add=(a,back)=>{const d=document.createElement('div');d.className='hleaf'+(back?' back':'');d.dataset.a=a;d.innerHTML=leafImg(null,back);el.appendChild(d);out.push(d);};
+  const c=document.createElement('canvas'); c.className='fan-canvas'; el.appendChild(c);
+  const fan={el,c,ctx:c.getContext('2d'),leaves:[],dirty:true,W:1,H:1,dpr:1};
+  const add=(a,back)=>fan.leaves.push({a,back,rot:a,scale:1,img:leafBitmap(leafKey(null,back))});
   for(let a=-81;a<=81;a+=18) add(a,true);
   for(let a=-90;a<=90;a+=18) add(a,false);
-  return out;
+  fan.resize=()=>{
+    const r=el.getBoundingClientRect();
+    fan.dpr=Math.min(devicePixelRatio||1, MOBILE?1.3:1.75);
+    fan.W=Math.max(1,r.width); fan.H=Math.max(1,r.height);
+    c.width=Math.round(fan.W*fan.dpr); c.height=Math.round(fan.H*fan.dpr); fan.dirty=true;
+  };
+  fan.draw=()=>{
+    const {ctx,W,H}=fan, h=1.6*H, w=h*.34;
+    ctx.setTransform(fan.dpr,0,0,fan.dpr,0,0); ctx.clearRect(0,0,W,H);
+    for(const L of fan.leaves){
+      if(!L.img.naturalWidth) continue;
+      ctx.save(); ctx.translate(W/2, H*1.05); ctx.rotate(L.rot*Math.PI/180); ctx.scale(L.scale,L.scale);
+      ctx.drawImage(L.img,-w/2,-h,w,h); ctx.restore();
+    }
+    fan.dirty=false;
+  };
+  fan.resize(); FANS.push(fan); return fan;
 }
-const heroLeaves = buildFan($('#heroFan'));
-const finLeaves = buildFan($('#finFan'));
-const openRot = el=>{const a=+el.dataset.a;const s=a===0?(el.classList.contains('back')?-1:1):Math.sign(a);return s*(Math.abs(a)+115);};
+const heroFan = buildFan($('#heroFan')), heroLeaves = heroFan.leaves;
+const finFan = buildFan($('#finFan')), finLeaves = finFan.leaves;
+const openRot = L=>{const s=L.a===0?(L.back?-1:1):Math.sign(L.a);return s*(Math.abs(L.a)+115);};
+addEventListener('resize',()=>FANS.forEach(f=>f.resize()));
+(function fanLoop(){ for(const f of FANS) if(f.dirty) f.draw(); requestAnimationFrame(fanLoop); })();
 
 // calendar
 (() => {
@@ -795,9 +835,9 @@ $('#chapters').innerHTML = CHAPTERS.map(ch=>`
 /* ============ petals ============ */
 (() => {
   const c=$('#petals'), ctx=c.getContext('2d'); let W,H,dpr; const P=[];
-  const resize=()=>{dpr=Math.min(2,devicePixelRatio||1);W=innerWidth;H=innerHeight;c.width=W*dpr;c.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);};
+  const resize=()=>{dpr=MOBILE?1:Math.min(2,devicePixelRatio||1);W=innerWidth;H=innerHeight;c.width=W*dpr;c.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);};
   resize(); addEventListener('resize',resize);
-  const count = innerWidth<700?16:28;
+  const count = MOBILE?10:26;
   for(let i=0;i<count;i++) P.push({x:Math.random()*W,y:Math.random()*H,r:3+Math.random()*4,vy:.35+Math.random()*.7,ph:Math.random()*6.28,rot:Math.random()*6.28,vr:(Math.random()-.5)*.03,k:Math.random()<.55?'j':'m'});
   let boost=0; window.__petalBoost=v=>{boost=v;};
   const draw=()=>{ctx.clearRect(0,0,W,H);
@@ -808,12 +848,17 @@ $('#chapters').innerHTML = CHAPTERS.map(ch=>`
       else{ctx.fillStyle='#f28c0f';ctx.beginPath();ctx.ellipse(0,0,p.r*.7,p.r*1.1,0,0,6.28);ctx.fill();ctx.fillStyle='#ffb54a';ctx.beginPath();ctx.ellipse(0,-p.r*.2,p.r*.35,p.r*.6,0,0,6.28);ctx.fill();}
       ctx.restore();}
     boost*=.95; requestAnimationFrame(draw);};
+  // skip frames while the tab is hidden
+  document.addEventListener('visibilitychange',()=>{ if(!document.hidden) boost=0; });
   draw();
 })();
 
 /* ============ animation ============ */
 if(!window.gsap){ $('#pre').remove(); $$('.fan,.fan-backdrop,.seal,.ev-leaf,.ev-thread').forEach(e=>e.remove()); return; }
 gsap.registerPlugin(ScrollTrigger);
+// phones: don't recalculate everything when the address bar slides in/out
+ScrollTrigger.config({ignoreMobileResize:true});
+const dirtyHero=()=>{heroFan.dirty=true;}, dirtyFin=()=>{finFan.dirty=true;};
 
 if('scrollRestoration' in history) history.scrollRestoration='manual';
 window.scrollTo(0,0);
@@ -824,7 +869,7 @@ document.body.style.overflow='hidden';
 gsap.to('.progress',{scaleX:1,ease:'none',scrollTrigger:{trigger:document.body,start:'top top',end:'bottom bottom',scrub:.3}});
 
 // initial states
-gsap.set(heroLeaves,{rotation:0,transformOrigin:'50% 100%'});
+heroLeaves.forEach(L=>{L.rot=0;}); dirtyHero();
 gsap.set('#finFan',{autoAlpha:0});
 gsap.set('#hero .hc',{opacity:0,y:30});
 gsap.set('#hero .ch',{yPercent:110,opacity:0,rotation:8});
@@ -833,7 +878,7 @@ const kolamDraw=(root)=>{const paths=$$('.kl > *',root);paths.forEach(p=>{const 
 const heroKolam = kolamDraw($('#hero'));
 
 // intro: preloader → leaves bloom
-const intro = gsap.timeline({delay:.2,paused:true});
+const intro = gsap.timeline({delay:.2,paused:true,onUpdate:dirtyHero});
 
 const setLoad = p => { if(window.__load) window.__load(p); };
 setLoad(55);
@@ -847,7 +892,7 @@ const minShow = new Promise(r=>setTimeout(r,900));
 Promise.race([Promise.all([fontsReady,rastersReady,minShow]), new Promise(r=>setTimeout(r,6000))])
   .then(()=>{ setLoad(100); setTimeout(()=>intro.play(),550); });
 intro.to('#pre',{opacity:0,duration:.6,ease:'power2.inOut',onComplete:()=>$('#pre').remove()})
-  .to(heroLeaves,{rotation:i=>+heroLeaves[i].dataset.a,duration:1.3,ease:'power3.out',stagger:{each:.015,from:'center'}},'-=.3')
+  .to(heroLeaves,{rot:i=>heroLeaves[i].a,duration:1.3,ease:'power3.out',stagger:{each:.015,from:'center'}},'-=.3')
   .call(startScroll)
   .to('.seal',{opacity:1,scale:1,duration:.9,ease:'back.out(1.8)'},'-=.8')
   .to(heroKolam,{strokeDashoffset:0,duration:2.4,ease:'power1.inOut',stagger:.004},'-=1');
@@ -856,11 +901,11 @@ function startScroll(){
   document.body.style.overflow='';
 
   // HERO: banana leaves part and fall away
-  const tl = gsap.timeline({scrollTrigger:{trigger:'#hero',start:'top top',end:'+=190%',scrub:1,pin:true,anticipatePin:1}});
+  const tl = gsap.timeline({onUpdate:dirtyHero,scrollTrigger:{trigger:'#hero',start:'top top',end:'+=190%',scrub:MOBILE?.6:1,pin:true,anticipatePin:1}});
   tl.to('.seal',{scale:1.4,opacity:0,duration:.18,ease:'power2.in'},0);
-  heroLeaves.forEach(el=>{
-    const a=Math.abs(+el.dataset.a);
-    tl.to(el,{rotation:openRot(el),scale:1.08,duration:.7,ease:'power2.in'}, .05 + (a/90)*.3 + (el.classList.contains('back')?.04:0));
+  heroLeaves.forEach(L=>{
+    const a=Math.abs(L.a);
+    tl.to(L,{rot:openRot(L),scale:1.08,duration:.7,ease:'power2.in'}, .05 + (a/90)*.3 + (L.back?.04:0));
   });
   tl.to('.fan-backdrop',{opacity:0,duration:.45,ease:'none'},.15)
     .to('#hero .hc',{opacity:1,y:0,stagger:.05,duration:.3,ease:'power2.out'},.45)
@@ -904,22 +949,23 @@ function startScroll(){
 
   // FINALE: leaves close back in
   const finKolam = kolamDraw($('#finale'));
-  gsap.set(finLeaves,{rotation:(i,el)=>openRot(el),transformOrigin:'50% 100%'});
-  const ft = gsap.timeline({scrollTrigger:{trigger:'#finale',start:'top top',end:'+=150%',scrub:1,pin:true,anticipatePin:1}});
+  finLeaves.forEach(L=>{L.rot=openRot(L);}); dirtyFin();
+  const ft = gsap.timeline({onUpdate:dirtyFin,scrollTrigger:{trigger:'#finale',start:'top top',end:'+=150%',scrub:MOBILE?.6:1,pin:true,anticipatePin:1}});
   ft.to(finKolam,{strokeDashoffset:0,stagger:.002,duration:.4},0)
     .set('#finFan',{autoAlpha:1},.2);
-  finLeaves.forEach(el=>{const a=Math.abs(+el.dataset.a);ft.to(el,{rotation:+el.dataset.a,duration:.6,ease:'power2.out'},.25+(1-a/90)*.25);});
+  finLeaves.forEach(L=>{const a=Math.abs(L.a);ft.to(L,{rot:L.a,duration:.6,ease:'power2.out'},.25+(1-a/90)*.25);});
   ft.to('.fin-content',{scale:.9,opacity:0,duration:.3},.5)
     .fromTo('.thanks',{opacity:0,scale:.85},{opacity:1,scale:1,duration:.3},.8)
     .fromTo('.thanks span',{y:30,opacity:0},{y:0,opacity:1,stagger:.06,duration:.2},.82);
 
   ScrollTrigger.refresh();
+  FANS.forEach(f=>f.resize());
 }
 
 /* dotted red-thread trail between Assam and Banaras */
 function buildTrail(){
   const stage=$('#stage'), trail=$('#trail'), heart=$('#trailHeart');
-  let pts=[];
+  let pts=[], lastK=-1;
   const layout=()=>{
     const sr=stage.getBoundingClientRect();
     const a=$('.place-a',stage).getBoundingClientRect(), b=$('.place-b .scene',stage).getBoundingClientRect();
@@ -929,13 +975,17 @@ function buildTrail(){
     const ns='http://www.w3.org/2000/svg', p=document.createElementNS(ns,'path');
     p.setAttribute('d',`M${A.x},${A.y} C${c1.x},${c1.y} ${c2.x},${c2.y} ${B.x},${B.y}`);
     const L=p.getTotalLength(), n=Math.floor(L/14);
-    pts=[]; trail.innerHTML='';
+    pts=[]; trail.innerHTML=''; lastK=-1;
     for(let i=0;i<=n;i++){const q=p.getPointAtLength(i/n*L);pts.push(q);const d=document.createElement('i');d.style.left=q.x+'px';d.style.top=q.y+'px';trail.appendChild(d);}
     update(st?st.progress:0);
   };
   const update=prog=>{
     const dots=trail.children, k=Math.round(prog*(dots.length-1));
-    for(let i=0;i<dots.length;i++){const on=i<=k;dots[i].style.opacity=on?1:0;dots[i].style.transform=on?'scale(1)':'scale(0)';}
+    if(k!==lastK){
+      const from=Math.max(0,Math.min(k,lastK)), to=Math.min(dots.length-1,Math.max(k,lastK));
+      for(let i=(lastK<0?0:from);i<=(lastK<0?dots.length-1:to);i++){const on=i<=k;dots[i].style.opacity=on?1:0;dots[i].style.transform=on?'scale(1)':'scale(0)';}
+      lastK=k;
+    }
     const q=pts[k]||pts[0]; if(q) gsap.set(heart,{x:q.x,y:q.y,scale:1+Math.sin(prog*40)*.08,opacity:prog>0.002?1:0});
   };
   let st=null;
