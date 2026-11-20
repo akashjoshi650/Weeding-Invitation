@@ -8,13 +8,13 @@ The bride is from Uttar Pradesh and the groom from Guwahati, Assam, with a South
 
 - Themed loader (diya, kolam rings and a marigold progress garland)
 - Banana leaves fan open as you scroll to reveal the invitation
-- Calligraphic अ–न monogram with a flute, peacock feather and lotus
+- Assam × Banaras emblem: japi and tea hills, Kashi shikhara and ghats, the Ganga, tied by a gamosa ribbon
 - Assam scene (Kamakhya temple, tea gardens, one-horned rhino, japi, gamosa borders)
 - Ganga scene (ghats, temple shikhara, aarti, Banarasi brocade)
 - Kolam, gopuram and mango-leaf thoranam
 - Event cards wrapped in banana-leaf parcels that open on scroll
 - Live countdown, the children's "बाल आग्रह" verses, and family contacts
-- Closing "thank you" in Hindi, Assamese, Tamil and English
+- Closing "thank you" in Hindi, Assamese and English
 
 ## Ceremonies
 
