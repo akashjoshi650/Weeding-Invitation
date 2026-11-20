@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Aayush & Saakshi</title>
-<meta name="description" content="Aayush weds Saakshi · 26–30 November 2026 · From Assam to Banaras">
+<title>Navyata & Ayaan</title>
+<meta name="description" content="Navyata weds Ayaan · 9–10 December 2026 · Hotel Blessings Imperia, Prayagraj">
 <meta name="theme-color" content="#2a0508">
 <style>html,body{background:#2a0508}</style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-<link id="gf" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Great+Vibes&family=Marcellus&family=Tiro+Devanagari+Hindi&family=Noto+Serif+Bengali:wght@500&family=Noto+Serif+Tamil:wght@500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-<noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Great+Vibes&family=Marcellus&family=Tiro+Devanagari+Hindi&family=Noto+Serif+Bengali:wght@500&family=Noto+Serif+Tamil:wght@500&display=swap" rel="stylesheet"></noscript>
+<link id="gf" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Great+Vibes&family=Marcellus&family=Tiro+Devanagari+Hindi&family=Rozha+One&family=Noto+Serif+Bengali:wght@500&family=Noto+Serif+Tamil:wght@500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Great+Vibes&family=Marcellus&family=Tiro+Devanagari+Hindi&family=Rozha+One&family=Noto+Serif+Bengali:wght@500&family=Noto+Serif+Tamil:wght@500&display=swap" rel="stylesheet"></noscript>
 <style>
 :root{
   --maroon:#6b0f17; --maroon-dk:#2a0508; --gold:#d6a64f; --gold-lt:#f5d98f; --cream:#fbf3e2;
@@ -159,7 +159,10 @@ section{position:relative;overflow:hidden}
   padding:clamp(28px,6vw,54px) clamp(20px,5vw,48px);text-align:center;box-shadow:0 20px 50px rgba(0,0,0,.35)}
 .paper::before,.paper::after{content:"";position:absolute;left:0;right:0;height:14px;background:linear-gradient(var(--gold) 0 2px,transparent 2px 5px,var(--gold) 5px 6px,transparent 6px)}
 .paper::before{top:10px}.paper::after{bottom:10px;transform:scaleY(-1)}
-.monogram{width:84px;margin:0 auto 14px}
+.monogram{width:min(300px,86%);margin:-6px auto 6px}
+.monogram svg{width:100%;height:auto;overflow:visible}
+.paper .shloka{font-family:var(--deva);color:#9a6a1f;font-size:.95rem;line-height:1.6;margin-bottom:14px}
+.paper .addr{font-family:var(--deva);color:#8a6a4a;font-size:.88rem;line-height:1.5}
 .paper .il{display:block}
 .paper .lead{font-family:var(--deva);color:#7a3a14;font-size:1.08rem;line-height:1.7}
 .paper .who{font-family:var(--deva);color:var(--maroon);font-size:clamp(2.4rem,7vw,3.2rem);line-height:1.2;margin-top:.3em}
@@ -172,6 +175,7 @@ section{position:relative;overflow:hidden}
 #events{background:linear-gradient(180deg,#0e3314,#123d18 40%,#0b2a10);padding:100px 0 120px}
 #events::before{content:"";position:absolute;inset:0;opacity:.07;background:repeating-linear-gradient(115deg,#bfe38a 0 1px,transparent 1px 14px);pointer-events:none}
 #events .sec-head h2{color:var(--gold-lt)}
+#events .doha{color:#e9d9a8;font-size:1.05rem;line-height:1.7;margin-top:12px}
 .chapter{margin:0 auto 70px;max-width:1180px;padding:0 16px}
 .chapter-head{display:flex;align-items:center;gap:16px;margin-bottom:30px;color:var(--gold-lt)}
 .chapter-head .num{font-family:var(--script);font-size:3.2rem;line-height:1;color:var(--marigold)}
@@ -215,8 +219,22 @@ section{position:relative;overflow:hidden}
   background:linear-gradient(180deg,#eef6f3,#d9ece9);border-radius:280px 280px 18px 18px;box-shadow:0 30px 60px rgba(0,0,0,.45),0 0 0 8px rgba(214,166,79,.65),0 0 0 10px #3a0609,0 0 0 12px rgba(214,166,79,.4)}
 .arch .lead{font-family:var(--deva);font-size:1.35rem;color:#5a6a3a;line-height:1.5}
 .arch h3{font-family:var(--deva);font-weight:400;font-size:clamp(2rem,6vw,2.6rem);color:#2f4a2a;margin:.2em 0 .6em}
-.arch .preshak{font-family:var(--deva);color:#7a5a2a;font-size:1.2rem;margin-bottom:12px}
+.arch .preshak{font-family:var(--deva);color:#7a5a2a;font-size:1.05rem;margin:10px 0 -2px;text-align:left;padding-left:4px}
 .contacts{display:grid;gap:10px}
+.contact .nm{text-align:left}
+
+/* ---------- kids' verses ---------- */
+#kids{background:linear-gradient(180deg,#f2e2bf,#fbf3e2);color:var(--ink);padding:10px 0 100px}
+#kids .sec-head h2{color:var(--maroon)}
+#kids .eyebrow{color:#9a6a1f}
+#kids .sec-head .deva{color:#9a6a1f}
+.kid-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:26px;max-width:900px}
+.kid-card{position:relative;background:#fffaf0;border-radius:18px;padding:30px 26px 24px;text-align:center;border:1px solid rgba(214,166,79,.6);
+  box-shadow:0 16px 34px rgba(90,40,10,.12)}
+.kid-card::before{content:"";position:absolute;left:18px;right:18px;top:-9px;height:18px;border-radius:9px;
+  background:radial-gradient(circle at 9px 9px,#ffd27a 0 2.5px,#f28c0f 3px 7px,transparent 7.5px) 0 0/18px 18px repeat-x}
+.kid-card blockquote{font-size:1.15rem;line-height:1.8;color:var(--maroon)}
+.kid-card figcaption{margin-top:12px;color:#8a6a4a}
 .contact{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 16px;border-radius:12px;text-decoration:none;
   background:linear-gradient(180deg,#fff,#f4ead2);border:1px solid rgba(214,166,79,.6);color:#3b2a14;transition:transform .2s,box-shadow .2s}
 .contact:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(80,40,10,.18)}
@@ -279,7 +297,7 @@ footer{background:#1a0305;color:#b89a7a;text-align:center;padding:26px 16px;font
       </svg>
     </div>
     <p class="pre-mantra">॥ शुभ आरम्भ ॥</p>
-    <p class="pre-names">Aayush &amp; Saakshi</p>
+    <p class="pre-names">Navyata &amp; Ayaan</p>
     <div class="garland" aria-hidden="true"><div class="garland-fill" id="preFill"></div></div>
     <p class="pre-pct"><span id="prePct">0</span>%</p>
     <p class="pre-msg" id="preMsg">Lighting the diya…</p>
@@ -318,16 +336,16 @@ footer{background:#1a0305;color:#b89a7a;text-align:center;padding:26px 16px;font
     <p class="mantra deva hc">॥ श्री गणेशाय नमः ॥</p>
     <div class="om hc">ॐ</div>
     <p class="eyebrow hc">Together with their families</p>
-    <h1 class="names"><span class="n" data-split>Aayush</span><span class="amp hc">&amp;</span><span class="n" data-split>Saakshi</span></h1>
-    <p class="hero-sub deva hc">आयुष संग साक्षी</p>
-    <div class="datebar hc"><span>26 — 30 November 2026</span><i>✦</i><span>Birmitrapur · Lucknow</span></div>
-    <div class="origin-row hc"><span class="chip">Assam</span><span class="chip">❤</span><span class="chip">Banaras</span></div>
+    <h1 class="names"><span class="n" data-split>Navyata</span><span class="amp hc">&amp;</span><span class="n" data-split>Ayaan</span></h1>
+    <p class="hero-sub deva hc">नव्यता संग अयान</p>
+    <div class="datebar hc"><span>9 — 10 December 2026</span><i>✦</i><span>Prayagraj</span></div>
+    <div class="origin-row hc"><span class="chip">Uttar Pradesh</span><span class="chip">❤</span><span class="chip">Assam</span></div>
   </div>
 
   <div class="fan-backdrop"></div>
   <div class="fan" id="heroFan"></div>
   <div class="seal">
-    <div class="disc"><div><span>आ ❤ सा</span><small>शुभ विवाह</small></div></div>
+    <div class="disc"><div><span>अ ❤ न</span><small>शुभ विवाह</small></div></div>
     <p class="hint">Scroll to unveil</p>
     <div class="arrow"></div>
   </div>
@@ -344,15 +362,15 @@ footer{background:#1a0305;color:#b89a7a;text-align:center;padding:26px 16px;font
   <div class="stage" id="stage">
     <figure class="place place-a reveal">
       <div class="scene"><div class="torn" data-scene="assam"></div></div>
-      <figcaption><span class="from">The groom · from Assam</span><b>Aayush</b><p>Land of Kamakhya, tea gardens &amp; the mighty Brahmaputra</p></figcaption>
+      <figcaption><span class="from">The groom · from Guwahati, Assam</span><b>Ayaan</b><p>Land of Kamakhya, tea gardens &amp; the mighty Brahmaputra</p></figcaption>
     </figure>
     <div class="story-mid reveal">
       <div class="script">From Bihu drums to Ganga aarti</div>
-      <p>Two cities, two cultures, a thousand miles apart — tied together by one red thread.</p>
+      <p>Two homes, two cultures, a thousand miles apart, tied together by one red thread.</p>
     </div>
     <figure class="place place-b reveal">
       <div class="scene"><div class="torn" data-scene="banaras"></div></div>
-      <figcaption><span class="from">The bride · from Banaras</span><b>Saakshi</b><p>City of light, of ghats, shehnai &amp; silk</p></figcaption>
+      <figcaption><span class="from">The bride · from Uttar Pradesh</span><b>Navyata</b><p>Land of the Ganga, of ghats, shehnai &amp; Banarasi silk</p></figcaption>
     </figure>
     <div class="trail" id="trail"></div>
     <svg class="trail-heart" id="trailHeart" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 28S3 20 3 11a6.5 6.5 0 0 1 13-2 6.5 6.5 0 0 1 13 2c0 9-13 17-13 17z" fill="#c8102e"/></svg>
@@ -366,11 +384,11 @@ footer{background:#1a0305;color:#b89a7a;text-align:center;padding:26px 16px;font
   <div class="wrap">
     <div class="cal-card reveal">
       <h3>शुभ विवाह</h3>
-      <p class="cal-sub">आयुष संग साक्षी</p>
-      <p class="month">November 2026</p>
+      <p class="cal-sub">नव्यता संग अयान</p>
+      <p class="month">December 2026</p>
       <div class="cal-grid" id="calGrid"></div>
       <div class="cal-legend">
-        <span><b>26</b> Byah Haath · Haldaat</span><span><b>27</b> Haldi · Mehndi</span><span><b>29</b> Sagai</span><span><b>30</b> Vivah · Aashirwad</span>
+        <span><b>9</b> Matri Poojan · Haldi · Shubh Vivah</span><span><b>10</b> Shubh Vidaai</span>
       </div>
     </div>
   </div>
@@ -387,17 +405,19 @@ footer{background:#1a0305;color:#b89a7a;text-align:center;padding:26px 16px;font
   <div class="sadya">
     <div class="sadya-leaf-wrap"><div class="sadya-leaf" id="sadyaLeaf"></div></div>
     <div class="paper" id="paper">
-      <svg class="monogram il" viewBox="0 0 100 100" aria-hidden="true"><path d="M50 88S14 64 14 38a18 18 0 0 1 36-6 18 18 0 0 1 36 6c0 26-36 50-36 50z" fill="none" stroke="#c8102e" stroke-width="4"/><text x="50" y="62" text-anchor="middle" font-family="Tiro Devanagari Hindi, serif" font-size="34" fill="#c8102e">आ सा</text></svg>
-      <p class="lead il">परम स्नेही स्वजन,<br>मंगलमय भगवान की असीम अनुकम्पा से<br>हमारे प्रिय सुपुत्र</p>
-      <p class="who il">आयुष</p>
-      <p class="par il">सुपुत्र: श्रीमती कविता एवं श्री प्रदीप अग्रवाल</p>
-      <p class="sang il">संग</p>
-      <p class="who il">साक्षी</p>
-      <p class="par il">सुपुत्री: श्रीमती कनिका एवं श्री पंकज रस्तोगी</p>
-      <p class="sang il">के</p>
-      <p class="fest il">मंगल परिणयोत्सव</p>
-      <p class="lead il">की मधुर बेला में आप सपरिवार पधार कर वर-वधू को<br>अपने स्नेहमयी आशीर्वाद से अनुग्रहित करने की कृपा करें।</p>
-      <p class="en il">Dear loved ones — by the boundless grace of God, we invite you and your family to bless Aayush (son of Smt. Kavita &amp; Shri Pradeep Agrawal) and Saakshi (daughter of Smt. Kanika &amp; Shri Pankaj Rastogi) on their wedding celebrations.</p>
+      <div class="monogram il" data-monogram></div>
+      <p class="shloka il">वक्रतुण्ड महाकाय सूर्यकोटि समप्रभः ।<br>निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा ॥</p>
+      <p class="lead il">स्नेही स्वजन,<br>परमपिता परमेश्वर की असीम अनुकम्पा से हमारी भतीजी</p>
+      <p class="who il">सौ॰ कां॰ नव्यता</p>
+      <p class="par il">सुपुत्री: श्रीमती कंचन एवं स्व॰ हरिश्चन्द्र</p>
+      <p class="addr il">ग्राम मिश्रोलिया, छांगुरपुर, टांडा, अम्बेडकर नगर (उ॰प्र॰)</p>
+      <p class="sang il">का शुभ विवाह</p>
+      <p class="who il">चि॰ अयान</p>
+      <p class="par il">सुपुत्र: श्रीमती बबीता एवं श्री धानी</p>
+      <p class="addr il">बिल्डिंग नं॰ 2, सेकेन्ड फ्लोर, बकुलबन हाउसिंग कॉलोनी,<br>भटपरा रोड, हटिगाँव, गुवाहाटी</p>
+      <p class="fest il">॥ शुभ मंगल परिणयोत्सव ॥</p>
+      <p class="lead il">की मधुर बेला पर अपनी स्नेहमयी उपस्थिति एवं शुभाशीषों की<br>मृदुल ज्योत्सना से नव-युगल को अलंकृत कर हमें अनुगृहीत करें।</p>
+      <p class="en il">Dear loved ones, by the boundless grace of God, we invite you to the wedding of our niece Navyata (daughter of Smt. Kanchan &amp; late Shri Harishchandra) with Ayaan (son of Smt. Babita &amp; Shri Dhani). Please grace the new couple with your presence and blessings.</p>
     </div>
   </div>
 </section>
@@ -409,6 +429,7 @@ footer{background:#1a0305;color:#b89a7a;text-align:center;padding:26px 16px;font
   <div class="sec-head reveal">
     <p class="eyebrow">Unwrap each leaf</p>
     <h2>The Celebrations</h2>
+    <p class="deva doha">विघ्न हरण मंगल करण, गणनायक गणराज ।<br>प्रथम निमंत्रण आपको, पूरण कीजै काज ॥</p>
   </div>
   <div id="chapters"></div>
 </section>
@@ -418,11 +439,30 @@ footer{background:#1a0305;color:#b89a7a;text-align:center;padding:26px 16px;font
 <!-- ================= COUNTDOWN ================= -->
 <section id="countdown">
   <div class="sec-head reveal">
-    <p class="eyebrow">Until the pheras · 30 Nov 2026, 4:00 PM</p>
+    <p class="eyebrow">Until the wedding day · Wednesday, 9 December 2026</p>
     <h2>Counting the Moments</h2>
   </div>
   <div class="cd" id="cd"></div>
-  <p class="cd-note">Each counter wears an Assamese <em>japi</em> — a little hello from the groom's side.</p>
+  <p class="cd-note">Each counter wears an Assamese <em>japi</em>, a little hello from the groom's side.</p>
+</section>
+
+<!-- ================= KIDS ================= -->
+<section id="kids">
+  <div class="sec-head reveal">
+    <p class="eyebrow">From the little ones</p>
+    <h2>Baal Aagrah</h2>
+    <p class="deva">॥ बाल आग्रह ॥</p>
+  </div>
+  <div class="kid-grid wrap">
+    <figure class="kid-card reveal">
+      <blockquote class="deva">पूड़ी खा के, रसगुल्ले खा के, कॉफी पी के जाना जी,<br>हमारी मौसी जी की शादी में पक्का-पक्का आना जी</blockquote>
+      <figcaption class="deva">.... शाश्वत, वान्या</figcaption>
+    </figure>
+    <figure class="kid-card reveal">
+      <blockquote class="deva">हल्दी है, चन्दन है, रिश्तों का बन्धन है,<br>हमारी दीदी की शादी में आपका अभिनन्दन है</blockquote>
+      <figcaption class="deva">.... आचमन, आद्यांत, रिद्धांश, इवान</figcaption>
+    </figure>
+  </div>
 </section>
 
 <!-- ================= FAMILY ================= -->
@@ -431,13 +471,14 @@ footer{background:#1a0305;color:#b89a7a;text-align:center;padding:26px 16px;font
     <div class="arch reveal">
       <svg class="birds" viewBox="0 0 120 30" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M10 18q5-6 10 0q5-6 10 0"/><path d="M44 10q4-5 8 0q4-5 8 0"/><path d="M70 20q5-6 10 0q5-6 10 0"/><path d="M96 8q3-4 6 0q3-4 6 0"/></svg>
       <p class="lead">आपके आगमन की<br>प्रतीक्षा में</p>
-      <h3>समस्त मित्तल परिवार</h3>
-      <p class="preshak">॥ प्रेषक ॥</p>
+      <h3>समस्त शुक्ल परिवार</h3>
       <div class="contacts">
-        <a class="contact" href="tel:+919437342261"><span class="nm">श्री विनोद मित्तल</span><span class="ph">94373 42261</span></a>
-        <a class="contact" href="tel:+919937453371"><span class="nm">श्री अशोक मित्तल</span><span class="ph">99374 53371</span></a>
-        <a class="contact" href="tel:+919938471199"><span class="nm">श्री दिलीप मित्तल</span><span class="ph">99384 71199</span></a>
-        <a class="contact" href="tel:+919437547555"><span class="nm">श्री प्रदीप मित्तल</span><span class="ph">94375 47555</span></a>
+        <p class="preshak">स्वागताकांक्षी</p>
+        <a class="contact" href="tel:+919451035956"><span class="nm">श्री सतीशचन्द्र शुक्ल</span><span class="ph">94510 35956</span></a>
+        <p class="preshak">विनीत</p>
+        <a class="contact" href="tel:+919651399017"><span class="nm">श्री गिरीशचन्द्र शुक्ल</span><span class="ph">96513 99017</span></a>
+        <p class="preshak">दर्शनाभिलाषी</p>
+        <a class="contact" href="tel:+917081772717"><span class="nm">आदित्य शुक्ल, प्रतीक शुक्ल,<br>प्रवीण शुक्ल</span><span class="ph">70817 72717</span></a>
       </div>
     </div>
   </div>
@@ -450,8 +491,8 @@ footer{background:#1a0305;color:#b89a7a;text-align:center;padding:26px 16px;font
   <div class="hero-kolam" data-kolam></div>
   <div class="fin-content">
     <p class="eyebrow">See you at the mandap</p>
-    <div class="script">Aayush &amp; Saakshi</div>
-    <p>From the Brahmaputra to the Ganga — with love.</p>
+    <div class="script">Navyata &amp; Ayaan</div>
+    <p>From the Brahmaputra to the Ganga, with love.</p>
   </div>
   <div class="fan" id="finFan"></div>
   <div class="thanks">
@@ -462,7 +503,7 @@ footer{background:#1a0305;color:#b89a7a;text-align:center;padding:26px 16px;font
     <small>Hindi · Assamese · Tamil · English</small>
   </div>
 </section>
-<footer>Aayush &amp; Saakshi · 26–30 November 2026 · Birmitrapur, Odisha &amp; Lucknow, Uttar Pradesh</footer>
+<footer>Navyata &amp; Ayaan · 9–10 December 2026 · Hotel Blessings Imperia, Civil Lines, Prayagraj</footer>
 
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
@@ -718,22 +759,77 @@ const ICONS = {
   mandap:`<svg viewBox="0 0 64 64"><path d="M8 24Q32 4 56 24Z"/><path d="M13 24v32M51 24v32M7 56h50"/><path d="M32 51c-6-3-6-9 0-16 6 7 6 13 0 16z"/><path d="M23 56l4-6h10l4 6"/><circle cx="32" cy="10" r="2"/></svg>`,
   diya:`<svg viewBox="0 0 64 64"><path d="M9 40c4 10 14 14 23 14s19-4 23-14z"/><path d="M32 38c-6-4-6-12 0-22 6 10 6 18 0 22z"/><path d="M26 59h12"/><path d="M14 18l3 3M50 18l-3 3M32 6v4"/></svg>`
 };
-const MITTAL = {b:'मित्तल आवास', a:'Birmitrapur, Odisha', q:'Mittal Awas Birmitrapur Odisha'};
-const AAMODH = {b:'आमोध NH-24', a:'Sitapur Road, near Brij Ki Rasoi, Lucknow, Uttar Pradesh', q:'Aamodh NH-24 Sitapur Road Lucknow'};
+ICONS.doli = `<svg viewBox="0 0 64 64"><path d="M4 22h56"/><path d="M18 22c0-8 6-13 14-13s14 5 14 13"/><circle cx="32" cy="7" r="2"/><path d="M18 22v24h28V22"/><path d="M26 46V30a6 6 0 0 1 12 0v16"/><path d="M14 46h36"/><path d="M20 52h24" stroke-dasharray="2 3"/></svg>`;
+const IMPERIA = {b:'होटल ब्लेसिंग्स इम्पीरिया', a:'20/16 B, Old 26 Elgin Road, L.B. Shastri Marg, Civil Lines, Prayagraj 211001', q:'Hotel Blessings Imperia Civil Lines Prayagraj'};
 const CHAPTERS = [
-  {num:'I', title:'Birmitrapur, Odisha', sub:'The rituals begin at home · 26 – 27 Nov', events:[
-    {hi:'ब्याह हाथ / हल्दात', en:'Byah Haath & Haldaat', when:'Thursday, 26 November 2026', time:'Byah Haath 11:00 AM · Haldaat 4:00 PM', v:MITTAL, icon:'bangles', c1:'#ffd36b', c2:'#e9891a', tx:'#4a1a06', ac:'#7a1010'},
-    {hi:'हल्दी (तेल / बान)', en:'Haldi · Tel Baan', when:'Friday, 27 November 2026', time:'11:00 AM', v:MITTAL, icon:'kalash', c1:'#fff1a0', c2:'#f2b705', tx:'#4a2a06', ac:'#8a3a00'},
-    {hi:'मेहँदी', en:'Mehndi', when:'Friday, 27 November 2026', time:'3:00 PM', v:MITTAL, icon:'paisley', c1:'#8bab45', c2:'#3c6a26', tx:'#fbf3e2', ac:'#ffe7a6'}
-  ]},
-  {num:'II', title:'Lucknow, Uttar Pradesh', sub:'The grand celebrations · 29 – 30 Nov', events:[
-    {hi:'सगाई समारोह', en:'Engagement Ceremony', when:'Sunday, 29 November 2026', time:'7:00 PM', v:AAMODH, icon:'rings', c1:'#4a2a52', c2:'#160a1e', tx:'#f6e9ff', ac:'#f5d98f'},
-    {hi:'शुभ विवाह', en:'The Wedding', when:'Monday, 30 November 2026', time:'4:00 PM', v:AAMODH, icon:'mandap', c1:'#a51c2a', c2:'#4a0710', tx:'#fff1df', ac:'#ffd27a'},
-    {hi:'आशीर्वाद समारोह', en:'Aashirwad · Reception', when:'Monday, 30 November 2026', time:'8:00 PM', v:AAMODH, icon:'diya', c1:'#1d3a66', c2:'#081428', tx:'#e9f0ff', ac:'#ffd27a'}
+  {num:'I', title:'Prayagraj, Uttar Pradesh', sub:'All ceremonies at Hotel Blessings Imperia · 9 – 10 Dec', events:[
+    {hi:'मातृ पूजन एवं हल्दी', en:'Matri Poojan & Haldi', when:'Wednesday, 9 December 2026', v:IMPERIA, icon:'kalash', c1:'#fff1a0', c2:'#f2b705', tx:'#4a2a06', ac:'#8a3a00'},
+    {hi:'शुभ विवाह', en:'The Wedding', when:'Wednesday, 9 December 2026', v:IMPERIA, icon:'mandap', c1:'#a51c2a', c2:'#4a0710', tx:'#fff1df', ac:'#ffd27a'},
+    {hi:'शुभ विदाई', en:'Vidaai', when:'Thursday, 10 December 2026', v:IMPERIA, icon:'doli', c1:'#1d3a66', c2:'#081428', tx:'#e9f0ff', ac:'#ffd27a'}
   ]}
 ];
 
+/* ============ अ–न monogram (Ayaan & Navyata): watercolour letters, flute, peacock feather, lotus ============ */
+function lotusSVG(x,y,s,id){
+  let petals='';
+  [-62,-34,-12,12,34,62].forEach((r,i)=>{ petals+=`<path transform="rotate(${r})" d="M0,0 C-8,-10 -7,-26 0,-36 C7,-26 8,-10 0,0Z" fill="url(#${id})" stroke="#c2456e" stroke-width=".6" opacity="${i===0||i===5?.85:1}"/>`; });
+  petals+=`<path d="M0,0 C-6,-9 -5,-22 0,-30 C5,-22 6,-9 0,0Z" fill="url(#${id})" stroke="#c2456e" stroke-width=".6"/>`;
+  return `<g transform="translate(${x},${y}) scale(${s})">${petals}<ellipse cx="0" cy="-2" rx="7" ry="3" fill="#e9b949"/></g>`;
+}
+const MONOGRAM = (()=>{
+  let barbs='';
+  for(let i=0;i<12;i++){ const y=-8-i*4.4, w=7+i*.9; barbs+=`M0,${y.toFixed(1)} Q${(-w*.6).toFixed(1)},${(y-3).toFixed(1)} ${(-w).toFixed(1)},${(y-8).toFixed(1)} M0,${y.toFixed(1)} Q${(w*.6).toFixed(1)},${(y-3).toFixed(1)} ${w.toFixed(1)},${(y-8).toFixed(1)} `; }
+  return `<svg viewBox="0 -24 360 274" role="img" aria-label="Monogram अ न for Ayaan and Navyata">
+<defs>
+  <linearGradient id="mgInk" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3fa483"/><stop offset=".45" stop-color="#1b6a55"/><stop offset=".75" stop-color="#2b8a6c"/><stop offset="1" stop-color="#16594a"/></linearGradient>
+  <linearGradient id="mgFlute" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f1c879"/><stop offset=".5" stop-color="#c98a35"/><stop offset="1" stop-color="#8a561c"/></linearGradient>
+  <linearGradient id="mgPetal" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#fbe3ea"/><stop offset=".55" stop-color="#f4a3bd"/><stop offset="1" stop-color="#d9507c"/></linearGradient>
+  <linearGradient id="mgWater" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a9d6e2"/><stop offset="1" stop-color="#5c9fb8"/></linearGradient>
+  <filter id="mgWash" x="-8%" y="-8%" width="116%" height="116%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="3" result="warp"/>
+    <feDisplacementMap in="SourceGraphic" in2="warp" scale="2.6" result="shape"/>
+    <feTurbulence type="fractalNoise" baseFrequency="0.08" numOctaves="3" seed="9" result="tex"/>
+    <feColorMatrix in="tex" type="matrix" values="0 0 0 0 0.04  0 0 0 0 0.22  0 0 0 0 0.18  0 0 0 1.3 -0.5" result="stain"/>
+    <feComposite in="stain" in2="shape" operator="in" result="stainIn"/>
+    <feMerge><feMergeNode in="shape"/><feMergeNode in="stainIn"/></feMerge>
+  </filter>
+</defs>
+<g opacity=".9" transform="translate(-8,8)">
+  <path d="M28,214 q14,-7 28,0 t28,0 t28,0 t28,0 v12 q-14,6 -28,0 t-28,0 t-28,0 t-28,0z" fill="url(#mgWater)" opacity=".75"/>
+  <path d="M40,220 h20 M78,223 h26 M118,219 h14" stroke="#eaf6fa" stroke-width="1.2" stroke-linecap="round"/>
+  ${lotusSVG(64,214,.5,'mgPetal')}
+  <ellipse cx="104" cy="216" rx="11" ry="3.4" fill="#4f9a5a"/>
+</g>
+<text x="180" y="200" text-anchor="middle" font-family="'Rozha One','Tiro Devanagari Hindi',serif" font-size="200" fill="url(#mgInk)" filter="url(#mgWash)">अन</text>
+<g transform="translate(196,76) rotate(-22)">
+  <path d="${barbs}" stroke="#5f9a3e" stroke-width=".9" fill="none" stroke-linecap="round"/>
+  <path d="M0,4 C-1,-18 0,-44 0,-64" stroke="#7a6a2e" stroke-width="1.6" fill="none"/>
+  <ellipse cx="0" cy="-68" rx="12.5" ry="16.5" fill="#4f9a3e"/>
+  <ellipse cx="0" cy="-66.5" rx="9.5" ry="12.5" fill="#d1a44a"/>
+  <ellipse cx="0" cy="-65.5" rx="7" ry="9.2" fill="#1f8a96"/>
+  <path d="M0,-59 C-5.5,-62 -4.6,-70 0,-69 C4.6,-70 5.5,-62 0,-59Z" fill="#17306e"/>
+</g>
+<g transform="translate(178,73) rotate(-2)">
+  <rect width="116" height="9" rx="4.5" fill="url(#mgFlute)" stroke="#7a4a14" stroke-width=".7"/>
+  <rect x="8" width="4" height="9" fill="#b3122e"/><rect x="14" width="2" height="9" fill="#e9c27a"/><rect x="100" width="3" height="9" fill="#b3122e"/>
+  <g fill="#4a2a10"><circle cx="40" cy="4.5" r="1.7"/><circle cx="52" cy="4.5" r="1.7"/><circle cx="64" cy="4.5" r="1.7"/><circle cx="76" cy="4.5" r="1.7"/><circle cx="88" cy="4.5" r="1.7"/></g>
+  <path d="M10,9 C7,18 13,24 10,32" stroke="#b3122e" stroke-width="1.4" fill="none"/>
+  <circle cx="10" cy="35" r="3.2" fill="#1f8a96"/>
+</g>
+<g transform="translate(26,4)">
+  <path d="M300,248 C302,228 296,214 300,200" stroke="#4f8a3a" stroke-width="2.4" fill="none"/>
+  <ellipse cx="322" cy="232" rx="24" ry="8" transform="rotate(-18 322 232)" fill="#5aa04a"/>
+  <path d="M302,236 L342,224" stroke="#3f7a32" stroke-width=".9"/>
+  <ellipse cx="282" cy="240" rx="18" ry="6" transform="rotate(14 282 240)" fill="#6aac54"/>
+  ${lotusSVG(300,202,1,'mgPetal')}
+  <path d="M318,214 C322,200 318,188 322,178" stroke="#4f8a3a" stroke-width="1.6" fill="none"/>
+  <path d="M322,178 C316,170 318,160 323,156 C328,160 330,170 322,178Z" fill="url(#mgPetal)" stroke="#c2456e" stroke-width=".6"/>
+</g>
+</svg>`;
+})();
+
 /* ============ build DOM ============ */
+$$('[data-monogram]').forEach(el=>el.innerHTML=MONOGRAM);
 $$('[data-kolam]').forEach(el=>el.innerHTML=kolam());
 $$('[data-gopuram]').forEach(el=>el.innerHTML=gopuram());
 $$('[data-thoranam]').forEach(el=>el.innerHTML=thoranam());
@@ -794,11 +890,11 @@ addEventListener('resize',()=>FANS.forEach(f=>f.resize()));
 (() => {
   const g=$('#calGrid'); const dows=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
   g.innerHTML = dows.map(d=>`<div class="dow">${d}</div>`).join('');
-  const first=new Date(2026,10,1).getDay();
+  const first=new Date(2026,11,1).getDay();
   for(let i=0;i<first;i++) g.insertAdjacentHTML('beforeend','<div></div>');
   const heart='<svg viewBox="0 0 32 32"><path d="M16 29S2 20 2 11a7 7 0 0 1 14-2.4A7 7 0 0 1 30 11c0 9-14 18-14 18z" fill="#c8102e"/></svg>';
-  for(let d=1;d<=30;d++){
-    const ev=[26,27,29].includes(d), big=d===30||d===29;
+  for(let d=1;d<=31;d++){
+    const ev=d===10, big=d===9;
     g.insertAdjacentHTML('beforeend',`<div class="d${ev||big?' mark':''}${big?' big':''}">${big?heart:''}<span>${d}</span></div>`);
   }
 })();
@@ -812,7 +908,7 @@ $('#chapters').innerHTML = CHAPTERS.map(ch=>`
         <div class="ev-inner">
           <div class="ev-icon">${ICONS[e.icon]}</div>
           <h4>${e.hi}</h4><div class="en-t">${e.en}</div>
-          <div class="when">${e.when}</div><div class="time">${e.time}</div>
+          <div class="when">${e.when}</div>${e.time?`<div class="time">${e.time}</div>`:''}
           <div class="where"><b>${e.v.b}</b>${e.v.a}<br>
             <a class="map" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(e.v.q)}">Open in Maps</a></div>
         </div>
@@ -826,11 +922,11 @@ $('#chapters').innerHTML = CHAPTERS.map(ch=>`
 (() => {
   const labs=['Days','Hours','Minutes','Seconds'];
   $('#cd').innerHTML = labs.map(l=>`<div class="cd-item"><div class="japi">${JAPI}</div><div class="val" data-u="${l}">00</div><div class="lab">${l}</div></div>`).join('');
-  const target = new Date('2026-11-30T16:00:00+05:30').getTime();
+  const target = new Date('2026-12-09T00:00:00+05:30').getTime();
   const vals = $$('#cd .val');
   const tick=()=>{let ms=Math.max(0,target-Date.now());const d=Math.floor(ms/864e5);ms-=d*864e5;const h=Math.floor(ms/36e5);ms-=h*36e5;const m=Math.floor(ms/6e4);ms-=m*6e4;const s=Math.floor(ms/1e3);
     [d,h,m,s].forEach((v,i)=>{vals[i].textContent=String(v).padStart(2,'0');});
-    if(target<=Date.now()) $('.cd-note').textContent='The pheras have begun — shubh vivah!';};
+    if(target<=Date.now()) $('.cd-note').textContent='The wedding day is here. Shubh vivah!';};
   tick(); setInterval(tick,1000);
 })();
 
