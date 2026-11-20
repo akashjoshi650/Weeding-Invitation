@@ -1,6 +1,6 @@
-# Navyata & Ayaan — Wedding Invitation
+# Navyata & Ayan — Wedding Invitation
 
-An animated wedding invitation website for **Navyata & Ayaan**, 9–10 December 2026, Prayagraj.
+An animated wedding invitation website for **Navyata & Ayan**, 9–10 December 2026, Prayagraj.
 
 Live site: https://akashjoshi650.github.io/Weeding-Invitation/
 
